@@ -2,6 +2,10 @@ name: My Workflow
 
 on: workflow_dispatch
 
+defaults:
+  run:
+    working-directory: environment/dev
+
 jobs:
   terraform:
     runs-on: self-hosted   
