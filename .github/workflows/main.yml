@@ -1,12 +1,12 @@
-name: dhondhu pipeline
+name: My Workflow
 
 on: workflow_dispatch
 
 jobs:
-  dhondhu_job:
-    name: dhondhu job
-    runs-on: self-hosted
+  checkout:
+    runs-on: self_hosted
     steps:
-      - name: Print a greeting
-        run:
-            echo abe tu dhondhu hai
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+               
+ 
