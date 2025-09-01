@@ -2,4 +2,11 @@ name: dhondhu pipeline
 
 on: workflow_dispatch
 
-
+jobs:
+  dhondhu_job:
+    name: dhondhu job
+    runs-on: self-hosted
+    steps:
+      - name: Print a greeting
+        run:
+            echo abe tu dhondhu hai
