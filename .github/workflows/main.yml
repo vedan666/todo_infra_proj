@@ -3,10 +3,18 @@ name: My Workflow
 on: workflow_dispatch
 
 jobs:
-  checkout:
-    runs-on: self_hosted
+  terraform:
+    runs-on: self-hosted   
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5.0.0
-               
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
  
