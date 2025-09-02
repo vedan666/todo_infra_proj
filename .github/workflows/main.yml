@@ -37,7 +37,7 @@ jobs:
   terraform_apply:
     runs-on: self-hosted
     needs: terraform_init_plan
-    environment: dev
+    environment: apply-approval
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
