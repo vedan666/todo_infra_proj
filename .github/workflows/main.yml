@@ -22,3 +22,19 @@ jobs:
         run: terraform plan
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+  terraform_apply:
+    runs-on: self-hosted
+    needs: terraform_init_plan
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Terraform Init
+        run: terraform init
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Terraform apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
