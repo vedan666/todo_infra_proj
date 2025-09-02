@@ -6,6 +6,10 @@ defaults:
   run:
     working-directory: environment/dev
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform_init_plan:
     runs-on: self-hosted   
@@ -29,7 +33,7 @@ jobs:
         run: terraform plan
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
-          
+
   terraform_apply:
     runs-on: self-hosted
     needs: terraform_init_plan
