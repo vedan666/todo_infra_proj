@@ -7,7 +7,7 @@ defaults:
     working-directory: environment/dev
 
 jobs:
-  terraform:
+  terraform_init_plan:
     runs-on: self-hosted   
     steps:
       - name: Checkout repository
@@ -21,4 +21,4 @@ jobs:
       - name: Terraform plan
         run: terraform plan
         env:
-          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
