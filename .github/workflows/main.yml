@@ -34,26 +34,27 @@ jobs:
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
 
-  # terraform_apply:
-  #   runs-on: self-hosted
-  #   needs: terraform_init_plan
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
+  terraform_apply:
+    runs-on: self-hosted
+    needs: terraform_init_plan
+    environment: dev
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
-  #     - name: Azure login
-  #       uses: azure/login@v2
-  #       with:
-  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
-  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-  #     - name: Terraform Init
-  #       run: terraform init
-  #       env:
-  #         TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Terraform Init
+        run: terraform init
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-  #     - name: Terraform apply
-  #       run: terraform apply -auto-approve
-  #       env:
-  #         TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Terraform apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
